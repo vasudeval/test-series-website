@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TestPro Academy - Crack Your Dream Exam with Expert Test Series</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar and smooth transitions */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('home')">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-500 flex items-center justify-center text-white shadow-md shadow-brand-500/20">
+                        <i class="fa-solid fa-graduation-cap text-xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">TestPro</span>
+                        <span class="text-xl font-extrabold text-brand-600">Academy</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-8 font-medium text-sm text-slate-600">
+                    <button onclick="switchTab('home')" id="nav-home" class="text-brand-600 font-semibold transition hover:text-brand-600">Home</button>
+                    <button onclick="switchTab('catalog')" id="nav-catalog" class="transition hover:text-brand-600">Test Series</button>
+                    <a href="#features" class="transition hover:text-brand-600">Features</a>
+                    <a href="#testimonials" class="transition hover:text-brand-600">Success Stories</a>
+                    <button onclick="switchTab('dashboard')" id="nav-dashboard" class="transition hover:text-brand-600 flex items-center gap-1.5 bg-brand-50 text-brand-700 px-3 py-1.5 rounded-lg border border-brand-100">
+                        <i class="fa-solid fa-gauge-high"></i> Student Dashboard
+                    </button>
+                </nav>
+
+                <!-- Auth Buttons / User Profile pill -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <button onclick="openModal('authModal')" class="text-sm font-semibold text-slate-700 hover:text-brand-600 px-4 py-2 transition">Sign In</button>
+                    <button onclick="switchTab('catalog')" class="text-sm font-semibold bg-brand-600 text-white px-5 py-2.5 rounded-xl shadow-lg shadow-brand-600/25 hover:bg-brand-700 transition transform hover:-translate-y-0.5">
+                        Get Started Free
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobileMenuBtn" class="text-slate-600 hover:text-slate-900 p-2 focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-4 space-y-2">
+            <button onclick="switchTab('home'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-100">Home</button>
+            <button onclick="switchTab('catalog'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-100">Test Series</button>
+            <a href="#features" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-100">Features</a>
+            <a href="#testimonials" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-100">Success Stories</a>
+            <button onclick="switchTab('dashboard'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-md font-medium text-brand-600 bg-brand-50">Student Dashboard</button>
+            <div class="pt-2 border-t border-slate-200 flex flex-col gap-2">
+                <button onclick="openModal('authModal')" class="w-full text-center py-2 border border-slate-300 rounded-lg font-semibold text-slate-700">Sign In</button>
+                <button onclick="switchTab('catalog')" class="w-full text-center py-2 bg-brand-600 text-white rounded-lg font-semibold shadow">Get Started Free</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container with Tabs -->
+    <main id="mainContainer">
+
+        <!-- ================= HOME VIEW ================= -->
+        <div id="view-home" class="space-y-20 pb-20">
+            
+            <!-- Hero Section -->
+            <section class="relative pt-16 pb-24 overflow-hidden bg-gradient-to-b from-indigo-50/50 via-white to-white">
+                <div class="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,theme(colors.indigo.100),transparent)] opacity-60"></div>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid lg:grid-cols-12 gap-12 items-center">
+                        <!-- Hero Text -->
+                        <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
+                            <div class="inline-flex items-center gap-2 bg-brand-50 border border-brand-200 px-4 py-1.5 rounded-full text-brand-700 text-xs sm:text-sm font-semibold tracking-wide">
+                                <span class="flex h-2 w-2 rounded-full bg-brand-600 animate-pulse"></span>
+                                India's #1 AI-Powered Test Series Platform
+                            </div>
+                            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                                Crack Your Dream Exam with <span class="bg-gradient-to-r from-brand-600 to-indigo-500 bg-clip-text text-transparent">Expert Test Series</span>
+                            </h1>
+                            <p class="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto lg:mx-0">
+                                Practice real exam-like mock tests, get All-India rankings, pinpoint your weak areas with deep analytics, and boost your score by up to 35%.
+                            </p>
+                            
+                            <!-- Search Bar Widget -->
+                            <div class="bg-white p-2 rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-200 max-w-xl mx-auto lg:mx-0 flex flex-col sm:flex-row gap-2">
+                                <div class="flex-1 flex items-center px-3 py-2 gap-3">
+                                    <i class="fa-solid fa-magnifying-glass text-slate-400"></i>
+                                    <input type="text" id="heroSearchInput" placeholder="Search exams e.g. JEE, NEET, GATE, UPSC..." class="w-full focus:outline-none text-slate-700 placeholder-slate-400 text-sm sm:text-base">
+                                </div>
+                                <button onclick="searchFromHero()" class="bg-brand-600 hover:bg-brand-700 text-white font-semibold px-6 py-3 rounded-xl transition shadow-md shadow-brand-600/20 text-sm sm:text-base">
+                                    Explore Tests
+                                </button>
+                            </div>
+
+                            <!-- Trust Badges / Stats -->
+                            <div class="pt-6 border-t border-slate-200 grid grid-cols-3 gap-6 max-w-lg mx-auto lg:mx-0">
+                                <div>
+                                    <p class="text-2xl sm:text-3xl font-extrabold text-slate-900">500k+</p>
+                                    <p class="text-xs sm:text-sm text-slate-500 font-medium">Active Aspirants</p>
+                                </div>
+                                <div>
+                                    <p class="text-2xl sm:text-3xl font-extrabold text-slate-900">1,200+</p>
+                                    <p class="text-xs sm:text-sm text-slate-500 font-medium">Mock Test Papers</p>
+                                </div>
+                                <div>
+                                    <p class="text-2xl sm:text-3xl font-extrabold text-slate-900">94.8%</p>
+                                    <p class="text-xs sm:text-sm text-slate-500 font-medium">Success Rate</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hero Graphic / Card Simulation -->
+                        <div class="lg:col-span-5 relative">
+                            <div class="relative mx-auto max-w-md bg-white rounded-3xl shadow-2xl shadow-indigo-900/10 border border-slate-100 p-6 space-y-6">
+                                <div class="flex items-center justify-between pb-4 border-b border-slate-100">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-12 h-12 rounded-2xl bg-indigo-50 flex items-center justify-center text-brand-600 text-xl font-bold">
+                                            <i class="fa-solid fa-laptop-code"></i>
+                                        </div>
+                                        <div>
+                                            <h3 class="font-bold text-slate-900">JEE Advanced Full Mock 2026</h3>
+                                            <p class="text-xs text-slate-500">Live AI Proctoring Enabled</p>
+                                        </div>
+                                    </div>
+                                    <span class="bg-emerald-50 text-emerald-700 text-xs font-semibold px-2.5 py-1 rounded-full">Trending</span>
+                                </div>
+
+                                <div class="space-y-3">
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-slate-500 font-medium">Questions:</span>
+                                        <span class="font-bold text-slate-800">90 Questions</span>
+                                    </div>
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-slate-500 font-medium">Duration:</span>
+                                        <span class="font-bold text-slate-800">180 Minutes</span>
+                                    </div>
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-slate-500 font-medium">Enrolled:</span>
+                                        <span class="font-bold text-slate-800">42,500+ Students</span>
+                                    </div>
+                                </div>
+
+                                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 space-y-2">
+                                    <div class="flex justify-between text-xs font-semibold text-slate-600">
+                                        <span>Average Accuracy</span>
+                                        <span class="text-brand-600">76.4%</span>
+                                    </div>
+                                    <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                                        <div class="bg-brand-600 h-full rounded-full" style="width: 76.4%;"></div>
+                                    </div>
+                                </div>
+
+                                <button onclick="openTestDetail('jee-adv')" class="w-full bg-slate-900 hover:bg-brand-600 text-white font-semibold py-3 rounded-xl transition shadow-md">
+                                    Take Free Demo Test
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Featured Test Series Section -->
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                    <div>
+                        <span class="text-brand-600 font-semibold text-sm uppercase tracking-wider">Top Rated Exams</span>
+                        <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Featured Test Series</h2>
+                    </div>
+                    <button onclick="switchTab('catalog')" class="mt-4 md:mt-0 text-brand-600 hover:text-brand-700 font-semibold flex items-center gap-2 group">
+                        Browse All Categories <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i>
+                    </button>
+                </div>
+
+                <!-- Test Cards Grid -->
+                <div id="homeFeaturedGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Populated via JavaScript -->
+                </div>
+            </section>
+
+            <!-- Why Choose Us / Features -->
+            <section id="features" class="bg-slate-900 text-white py-24">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                        <span class="text-brand-400 font-semibold text-sm uppercase tracking-wider">Why TestPro Academy?</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Built by Toppers & Experts for Maximum Score Improvement</h2>
+                        <p class="text-slate-400">Everything you need to conquer your upcoming competitive exams under one roof.</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="bg-slate-800/50 border border-slate-700/60 p-8 rounded-3xl space-y-4 hover:border-brand-500 transition duration-300">
+                            <div class="w-14 h-14 rounded-2xl bg-brand-600/20 text-brand-400 flex items-center justify-center text-2xl font-bold">
+                                <i class="fa-solid fa-chart-pie"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white">Advanced AI Analytics</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                Get precise time-management graphs, topic-wise strengths & weaknesses breakdown, and personalized improvement suggestions.
+                            </p>
+                        </div>
+
+                        <div class="bg-slate-800/50 border border-slate-700/60 p-8 rounded-3xl space-y-4 hover:border-brand-500 transition duration-300">
+                            <div class="w-14 h-14 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl font-bold">
+                                <i class="fa-solid fa-ranking-star"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white">All-India Live Ranking</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                Compete with hundreds of thousands of serious aspirants across the country in simulated live tests and check your national rank instantly.
+                            </p>
+                        </div>
+
+                        <div class="bg-slate-800/50 border border-slate-700/60 p-8 rounded-3xl space-y-4 hover:border-brand-500 transition duration-300">
+                            <div class="w-14 h-14 rounded-2xl bg-amber-500/20 text-amber-400 exact flex items-center justify-center text-2xl font-bold">
+                                <i class="fa-solid fa-laptop"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white">Exact Real Exam Interface</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                Experience the exact same CBT (Computer Based Test) palette, navigation, calculator, and marking scheme as the real exam.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonials Section -->
+            <section id="testimonials" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+                    <span class="text-brand-600 font-semibold text-sm uppercase tracking-wider">Success Stories</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900">Loved by Thousands of Rankers</h2>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6 flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <div class="flex text-amber-400 text-sm">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-slate-600 text-sm italic">
+                                "The analytics feature in TestPro Academy is a total game changer. It showed me exactly where I was losing time in Physics, helping me improve my JEE Advanced rank from AIR 12,400 to AIR 1,420!"
+                            </p>
+                        </div>
+                        <div class="flex items-center space-x-3 pt-4 border-t border-slate-100">
+                            <img src="https://placehold.co/100x100/6366f1/ffffff?text=AR" alt="Student" class="w-12 h-12 rounded-full object-cover">
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-sm">Aarav Rastogi</h4>
+                                <p class="text-xs text-slate-500">IIT Delhi (JEE Adv 2025)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6 flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <div class="flex text-amber-400 text-sm">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-slate-600 text-sm italic">
+                                "NEET mock papers here match the exact difficulty level of the actual exam. The video solutions provided after every test cleared all my concepts instantly."
+                            </p>
+                        </div>
+                        <div class="flex items-center space-x-3 pt-4 border-t border-slate-100">
+                            <img src="https://placehold.co/100x100/10b981/ffffff?text=PS" alt="Student" class="w-12 h-12 rounded-full object-cover">
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-sm">Priya Sharma</h4>
+                                <p class="text-xs text-slate-500">AIIMS Delhi (NEET 2025)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6 flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <div class="flex text-amber-400 text-sm">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-slate-600 text-sm italic">
+                                "Cleared SBI PO in my very first attempt! The banking sectional tests and current affairs quizzes gave me the exact speed needed to crack the prelims and mains."
+                            </p>
+                        </div>
+                        <div class="flex items-center space-x-3 pt-4 border-t border-slate-100">
+                            <img src="https://placehold.co/100x100/f59e0b/ffffff?text=RK" alt="Student" class="w-12 h-12 rounded-full object-cover">
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-sm">Rohan Kumar</h4>
+                                <p class="text-xs text-slate-500">SBI PO (Selected 2025)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= CATALOG VIEW ================= -->
+        <div id="view-catalog" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h1 class="text-3xl font-extrabold text-slate-900">Explore All Test Series</h1>
+                    <p class="text-slate-500 mt-1">Choose from over 1,200+ comprehensive test packages crafted by top educators.</p>
+                </div>
+                <!-- Search Filter in Catalog -->
+                <div class="relative w-full md:w-80">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-slate-400"></i>
+                    <input type="text" id="catalogSearchInput" oninput="filterCatalog()" placeholder="Search test series..." class="w-full bg-white pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:border-brand-500 text-sm">
+                </div>
+            </div>
+
+            <!-- Category Filter Tabs -->
+            <div class="flex overflow-x-auto pb-2 gap-2 scrollbar-none" id="categoryTabs">
+                <button onclick="setCategory('All')" class="category-btn px-5 py-2.5 rounded-xl font-semibold text-sm whitespace-nowrap bg-brand-600 text-white shadow-md shadow-brand-600/20 transition">All Exams</button>
+                <button onclick="setCategory('Engineering')" class="category-btn px-5 py-2.5 rounded-xl font-semibold text-sm whitespace-nowrap bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition">Engineering (JEE)</button>
+                <button onclick="setCategory('Medical')" class="category-btn px-5 py-2.5 rounded-xl font-semibold text-sm whitespace-nowrap bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition">Medical (NEET)</button>
+                <button onclick="setCategory('Banking')" class="category-btn px-5 py-2.5 rounded-xl font-semibold text-sm whitespace-nowrap bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition">Banking & Insurance</button>
+                <button onclick="setCategory('Civil Services')" class="category-btn px-5 py-2.5 rounded-xl font-semibold text-sm whitespace-nowrap bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition">Civil Services (UPSC)</button>
+                <button onclick="setCategory('Gate')" class="category-btn px-5 py-2.5 rounded-xl font-semibold text-sm whitespace-nowrap bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition">GATE & PSU</button>
+            </div>
+
+            <!-- Catalog Test Cards Grid -->
+            <div id="catalogGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Populated via JavaScript -->
+            </div>
+        </div>
+
+        <!-- ================= STUDENT DASHBOARD VIEW ================= -->
+        <div id="view-dashboard" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
+            <!-- Dashboard Header -->
+            <div class="bg-gradient-to-r from-brand-600 to-indigo-700 rounded-3xl p-8 text-white shadow-xl flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                <div class="flex items-center space-x-4">
+                    <img src="https://placehold.co/150x150/ffffff/4f46e5?text=JD" alt="User" class="w-20 h-20 rounded-2xl border-2 border-white/80 object-cover shadow">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h1 class="text-2xl sm:text-3xl font-bold">Welcome back, John Doe!</h1>
+                            <span class="bg-amber-400 text-slate-900 text-xs font-extrabold px-2.5 py-0.5 rounded-full">PRO MEMBER</span>
+                        </div>
+                        <p class="text-indigo-100 text-sm mt-1">Target Exam: <span class="font-semibold text-white">JEE Advanced 2026</span> | Aspirant ID: #TP-98421</p>
+                    </div>
+                </div>
+                <button onclick="switchTab('catalog')" class="bg-white text-brand-700 font-semibold px-6 py-3 rounded-xl shadow hover:bg-indigo-50 transition">
+                    <i class="fa-solid fa-plus mr-2"></i> Enroll in New Test Series
+                </button>
+            </div>
+
+            <!-- Dashboard Stats Grid -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-50 text-brand-600 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-file-lines"></i>
+                    </div>
+                    <div>
+                        <p class="text-slate-500 text-xs font-medium">Tests Attempted</p>
+                        <h3 class="text-2xl font-extrabold text-slate-900 mt-0.5">38 / 120</h3>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-bullseye"></i>
+                    </div>
+                    <div>
+                        <p class="text-slate-500 text-xs font-medium">Average Accuracy</p>
+                        <h3 class="text-2xl font-extrabold text-slate-900 mt-0.5">82.4%</h3>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-ranking-star"></i>
+                    </div>
+                    <div>
+                        <p class="text-slate-500 text-xs font-medium">All-India Rank</p>
+                        <h3 class="text-2xl font-extrabold text-slate-900 mt-0.5">AIR 412</h3>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <div>
+                        <p class="text-slate-500 text-xs font-medium">Hours Practiced</p>
+                        <h3 class="text-2xl font-extrabold text-slate-900 mt-0.5">142 hrs</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Enrolled Tests & Performance Section -->
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Left 2 Cols: Enrolled Test Series -->
+                <div class="lg:col-span-2 space-y-6">
+                    <h2 class="text-xl font-bold text-slate-900">My Enrolled Test Series</h2>
+                    <div class="space-y-4">
+                        <!-- Enrolled Item 1 -->
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center text-xl font-bold flex-shrink-0">
+                                    <i class="fa-solid fa-rocket"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-slate-900">JEE Advanced 2026 Ultimate Test Series</h3>
+                                    <p class="text-xs text-slate-500 mt-0.5">45 Tests Total • 28 Tests Completed</p>
+                                    <div class="w-48 bg-slate-100 h-2 rounded-full overflow-hidden mt-3">
+                                        <div class="bg-brand-600 h-full rounded-full" style="width: 62%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button onclick="openModal('mockTestRunner')" class="bg-brand-600 hover:bg-brand-700 text-white font-semibold px-5 py-2.5 rounded-xl text-sm transition">
+                                Resume Test <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+
+                        <!-- Enrolled Item 2 -->
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl font-bold flex-shrink-0">
+                                    <i class="fa-solid fa-atom"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-slate-900">NEET UG 2026 Ranker Series</h3>
+                                    <p class="text-xs text-slate-500 mt-0.5">50 Tests Total • 10 Tests Completed</p>
+                                    <div class="w-48 bg-slate-100 h-2 rounded-full overflow-hidden mt-3">
+                                        <div class="bg-emerald-500 h-full rounded-full" style="width: 20%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button onclick="openModal('mockTestRunner')" class="bg-brand-600 hover:bg-brand-700 text-white font-semibold px-5 py-2.5 rounded-xl text-sm transition">
+                                Resume Test <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Col: Performance Analytics Graph Simulation -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-6">
+                    <div class="flex justify-between items-center">
+                        <h2 class="text-xl font-bold text-slate-900">Score Trend</h2>
+                        <span class="text-xs font-semibold bg-emerald-50 text-emerald-700 px-2.5 py-1 rounded-full">+14% this month</span>
+                    </div>
+                    <p class="text-xs text-slate-500">Your mock test scores progression over the last 5 tests:</p>
+                    
+                    <!-- Simulated CSS Bar Chart -->
+                    <div class="h-48 flex items-end justify-between gap-3 pt-6 px-2 border-b border-slate-100">
+                        <div class="w-full flex flex-col items-center gap-2">
+                            <span class="text-xs font-bold text-slate-600">180</span>
+                            <div class="w-full bg-indigo-100 hover:bg-brand-500 rounded-t-lg transition h-28"></div>
+                            <span class="text-xs text-slate-400">Test 1</span>
+                        </div>
+                        <div class="w-full flex flex-col items-center gap-2">
+                            <span class="text-xs font-bold text-slate-600">210</span>
+                            <div class="w-full bg-indigo-100 hover:bg-brand-500 rounded-t-lg transition h-36"></div>
+                            <span class="text-xs text-slate-400">Test 2</span>
+                        </div>
+                        <div class="w-full flex flex-col items-center gap-2">
+                            <span class="text-xs font-bold text-slate-600">195</span>
+                            <div class="w-full bg-indigo-100 hover:bg-brand-500 rounded-t-lg transition h-32"></div>
+                            <span class="text-xs text-slate-400">Test 3</span>
+                        </div>
+                        <div class="w-full flex flex-col items-center gap-2">
+                            <span class="text-xs font-bold text-slate-600">240</span>
+                            <div class="w-full bg-indigo-100 hover:bg-brand-500 rounded-t-lg transition h-40"></div>
+                            <span class="text-xs text-slate-400">Test 4</span>
+                        </div>
+                        <div class="w-full flex flex-col items-center gap-2">
+                            <span class="text-xs font-bold text-brand-600">275</span>
+                            <div class="w-full bg-brand-600 rounded-t-lg transition h-48 shadow-lg shadow-brand-500/30"></div>
+                            <span class="text-xs font-bold text-slate-800">Latest</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-2 text-center">
+                        <button onclick="showToast('Loading full detailed analytics report...')" class="text-sm font-semibold text-brand-600 hover:text-brand-700">
+                            View Subject-Wise Breakdown <i class="fa-solid fa-chevron-right text-xs ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 pt-16 pb-12 border-t border-slate-800 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Col 1: Brand -->
+                <div class="space-y-4 md:col-span-1">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-xl bg-brand-600 flex items-center justify-center text-white">
+                            <i class="fa-solid fa-graduation-cap text-xl"></i>
+                        </div>
+                        <span class="text-xl font-bold text-white">TestPro Academy</span>
+                    </div>
+                    <p class="text-sm text-slate-400">
+                        Empowering aspirants worldwide with realistic test series, deep analytics, and expert test solutions.
+                    </p>
+                    <div class="flex space-x-4 text-lg">
+                        <a href="#" class="hover:text-white transition"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" class="hover:text-white transition"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="hover:text-white transition"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#" class="hover:text-white transition"><i class="fa-brands fa-telegram"></i></a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Quick Links -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Exam Categories</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" onclick="switchTab('catalog')" class="hover:text-white transition">Engineering (JEE)</a></li>
+                        <li><a href="#" onclick="switchTab('catalog')" class="hover:text-white transition">Medical (NEET)</a></li>
+                        <li><a href="#" onclick="switchTab('catalog')" class="hover:text-white transition">Banking & PO</a></li>
+                        <li><a href="#" onclick="switchTab('catalog')" class="hover:text-white transition">Civil Services (UPSC)</a></li>
+                        <li><a href="#" onclick="switchTab('catalog')" class="hover:text-white transition">GATE & PSU</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Resources -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">All-India Mock Tests</a></li>
+                        <li><a href="#" class="hover:text-white transition">Previous Year Papers</a></li>
+                        <li><a href="#" class="hover:text-white transition">Topper Strategies</a></li>
+                        <li><a href="#" class="hover:text-white transition">Exam Notifications</a></li>
+                        <li><a href="#" class="hover:text-white transition">Scholarship Test</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: GitHub Hosting Guide -->
+                <div class="bg-slate-800/60 p-6 rounded-2xl border border-slate-700 space-y-3">
+                    <h4 class="text-white font-semibold text-sm flex items-center gap-2">
+                        <i class="fa-brands fa-github text-lg"></i> GitHub Pages Guide
+                    </h4>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        To host this website for free on GitHub:
+                    </p>
+                    <ol class="text-xs text-slate-300 list-decimal list-inside space-y-1">
+                        <li>Create a repo named <code class="bg-slate-900 px-1 py-0.5 rounded text-brand-300">test-series</code></li>
+                        <li>Save this file as <code class="bg-slate-900 px-1 py-0.5 rounded text-brand-300">index.html</code></li>
+                        <li>Push to GitHub and enable <b>GitHub Pages</b> in settings!</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500">
+                <p>&copy; 2026 TestPro Academy. All rights reserved. Zero investment frontend architecture.</p>
+                <div class="flex space-x-6 mt-4 sm:mt-0">
+                    <a href="#" class="hover:text-slate-400">Privacy Policy</a>
+                    <a href="#" class="hover:text-slate-400">Terms of Service</a>
+                    <a href="#" class="hover:text-slate-400">Support</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Test Detail Modal -->
+    <div id="testDetailModal" class="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 animate-in fade-in zoom-in duration-200">
+            <div id="modalContentBody" class="p-8 space-y-6">
+                <!-- Dynamically populated -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Sign In / Register Modal -->
+    <div id="authModal" class="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-8 shadow-2xl border border-slate-200 relative">
+            <button onclick="closeModal('authModal')" class="absolute top-6 right-6 text-slate-400 hover:text-slate-700 text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="text-center space-y-2 mb-8">
+                <div class="w-12 h-12 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center text-2xl font-bold mx-auto">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <h3 class="text-2xl font-extrabold text-slate-900">Welcome to TestPro</h3>
+                <p class="text-xs text-slate-500">Sign in to access your test dashboard & scorecards</p>
+            </div>
+
+            <form onsubmit="handleAuthSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-600 mb-1">Email Address</label>
+                    <input type="email" required placeholder="student@example.com" class="w-full bg-slate-50 px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-600 mb-1">Password</label>
+                    <input type="password" required placeholder="••••••••" class="w-full bg-slate-50 px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-brand-500">
+                </div>
+                <button type="submit" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-semibold py-3 rounded-xl shadow-lg shadow-brand-600/20 transition">
+                    Sign In
+                </button>
+            </form>
+            <div class="mt-6 text-center text-xs text-slate-500">
+                Don't have an account? <span onclick="showToast('Registration simulation activated!')" class="text-brand-600 font-bold cursor-pointer hover:underline">Sign up for free</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mock Test Runner Simulation Modal -->
+    <div id="mockTestRunner" class="fixed inset-0 z-50 bg-slate-900 hidden flex flex-col">
+        <div class="bg-slate-950 px-6 py-4 border-b border-slate-800 flex justify-between items-center text-white">
+            <div class="flex items-center space-x-4">
+                <span class="font-bold text-lg">JEE Advanced 2026 Full Mock - Physics & Math</span>
+                <span class="bg-brand-600/30 text-brand-300 text-xs px-2.5 py-1 rounded-full border border-brand-500/30">CBT Mode</span>
+            </div>
+            <div class="flex items-center space-x-6">
+                <div class="flex items-center gap-2 text-amber-400 font-mono text-lg bg-slate-900 px-4 py-1.5 rounded-xl border border-slate-800">
+                    <i class="fa-regular fa-clock"></i> <span id="timerDisplay">02:58:42</span>
+                </div>
+                <button onclick="closeModal('mockTestRunner')" class="bg-red-500/20 text-red-400 hover:bg-red-500 hover:text-white px-4 py-2 rounded-xl text-sm font-semibold transition border border-red-500/30">
+                    End Test & Submit
+                </button>
+            </div>
+        </div>
+
+        <div class="flex-1 flex overflow-hidden">
+            <!-- Question Area -->
+            <div class="flex-1 bg-white p-8 overflow-y-auto space-y-6">
+                <div class="flex justify-between items-center pb-4 border-b border-slate-200">
+                    <span class="font-bold text-slate-700">Question 4 of 90</span>
+                    <span class="text-xs bg-slate-100 text-slate-600 px-3 py-1 rounded-full font-semibold">Single Correct (+4, -1)</span>
+                </div>
+
+                <div class="space-y-4">
+                    <p class="text-slate-900 font-medium text-lg">
+                        Find the electric flux through a spherical surface of radius <code class="bg-slate-100 px-1.5 py-0.5 rounded text-brand-600 font-mono">R</code> enclosing a point charge <code class="bg-slate-100 px-1.5 py-0.5 rounded text-brand-600 font-mono">q</code> placed at its center.
+                    </p>
+                </div>
+
+                <div class="space-y-3 pt-4">
+                    <label class="flex items-center space-x-3 p-4 rounded-xl border border-slate-200 hover:border-brand-500 cursor-pointer transition">
+                        <input type="radio" name="q4" class="text-brand-600 focus:ring-brand-500">
+                        <span class="text-sm font-medium text-slate-700">A) $\frac{q}{\varepsilon_0}$</span>
+                    </label>
+                    <label class="flex items-center space-x-3 p-4 rounded-xl border border-slate-200 hover:border-brand-500 cursor-pointer transition">
+                        <input type="radio" name="q4" class="text-brand-600 focus:ring-brand-500">
+                        <span class="text-sm font-medium text-slate-700">B) $\frac{q}{4\pi\varepsilon_0 R^2}$</span>
+                    </label>
+                    <label class="flex items-center space-x-3 p-4 rounded-xl border border-slate-200 hover:border-brand-500 cursor-pointer transition">
+                        <input type="radio" name="q4" class="text-brand-600 focus:ring-brand-500">
+                        <span class="text-sm font-medium text-slate-700">C) Zero</span>
+                    </label>
+                    <label class="flex items-center space-x-3 p-4 rounded-xl border border-slate-200 hover:border-brand-500 cursor-pointer transition">
+                        <input type="radio" name="q4" class="text-brand-600 focus:ring-brand-500">
+                        <span class="text-sm font-medium text-slate-700">D) $\frac{q}{2\varepsilon_0}$</span>
+                    </label>
+                </div>
+
+                <div class="pt-6 flex justify-between">
+                    <button class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold px-6 py-2.5 rounded-xl text-sm transition">
+                        Mark for Review & Next
+                    </button>
+                    <button onclick="showToast('Answer saved successfully!')" class="bg-brand-600 hover:bg-brand-700 text-white font-semibold px-8 py-2.5 rounded-xl text-sm transition shadow">
+                        Save & Next
+                    </button>
+                </div>
+            </div>
+
+            <!-- Question Palette Sidebar -->
+            <div class="w-80 bg-slate-900 border-l border-slate-800 p-6 flex flex-col justify-between hidden md:flex text-white">
+                <div class="space-y-6">
+                    <h3 class="font-bold text-slate-300 text-sm uppercase tracking-wider">Question Palette</h3>
+                    
+                    <div class="grid grid-cols-5 gap-2 text-xs font-bold">
+                        <div class="w-10 h-10 rounded-lg bg-emerald-600 flex items-center justify-center">1</div>
+                        <div class="w-10 h-10 rounded-lg bg-emerald-600 flex items-center justify-center">2</div>
+                        <div class="w-10 h-10 rounded-lg bg-amber-500 text-slate-900 flex items-center justify-center">3</div>
+                        <div class="w-10 h-10 rounded-lg bg-brand-600 ring-2 ring-white flex items-center justify-center">4</div>
+                        <div class="w-10 h-10 rounded-lg bg-slate-800 text-slate-400 flex items-center justify-center">5</div>
+                        <div class="w-10 h-10 rounded-lg bg-slate-800 text-slate-400 flex items-center justify-center">6</div>
+                        <div class="w-10 h-10 rounded-lg bg-slate-800 text-slate-400 flex items-center justify-center">7</div>
+                    </div>
+
+                    <div class="space-y-2 text-xs text-slate-400 pt-4 border-t border-slate-800">
+                        <div class="flex items-center gap-2"><div class="w-3 h-3 rounded bg-emerald-600"></div> Answered (2)</div>
+                        <div class="flex items-center gap-2"><div class="w-3 h-3 rounded bg-amber-500"></div> Marked for Review (1)</div>
+                        <div class="flex items-center gap-2"><div class="w-3 h-3 rounded bg-slate-800 border border-slate-700"></div> Not Visited (87)</div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800/60 p-4 rounded-xl border border-slate-700 text-xs space-y-2">
+                    <p class="font-semibold text-slate-300">Exam Instructions:</p>
+                    <p class="text-slate-400">Do not refresh or close this window during the online test simulation.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Toast Message Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-32 opacity-0 transition-all duration-300 bg-slate-900 text-white px-6 py-3.5 rounded-2xl shadow-2xl border border-slate-700 text-sm font-semibold flex items-center gap-3">
+        <i class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
+        <span id="toastMessage">Action completed successfully!</span>
+    </div>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Test Series Data Catalog
+        const testSeriesData = [
+            {
+                id: 'jee-adv',
+                title: 'JEE Advanced 2026 Ultimate Test Series',
+                category: 'Engineering',
+                testsCount: 45,
+                price: '₹1,499',
+                originalPrice: '₹3,999',
+                rating: 4.9,
+                reviews: '14.2k',
+                tag: 'Bestseller',
+                description: 'Complete mock test package crafted by IIT Delhi & Bombay alumni with video solutions and live All-India rank predictor.'
+            },
+            {
+                id: 'neet-ug',
+                title: 'NEET UG 2026 Ranker Test Series',
+                category: 'Medical',
+                testsCount: 50,
+                price: '₹1,299',
+                originalPrice: '₹3,499',
+                rating: 4.8,
+                reviews: '18.5k',
+                tag: 'Most Popular',
+                description: 'NCERT-based chapter tests, part tests, and 20 full-length mock papers with microscopic performance analytics.'
+            },
+            {
+                id: 'sbi-po',
+                title: 'SBI PO & IBPS Clerk Prime Mock Package',
+                category: 'Banking',
+                testsCount: 60,
+                price: '₹999',
+                originalPrice: '₹2,499',
+                rating: 4.7,
+                reviews: '9.8k',
+                tag: 'Trending',
+                description: 'Prelims and Mains sectional tests with bilingual support (English & Hindi) and high-level reasoning sets.'
+            },
+            {
+                id: 'upsc-cse',
+                title: 'UPSC CSE Prelims 2026 GS & CSAT Test Series',
+                category: 'Civil Services',
+                testsCount: 35,
+                price: '₹2,499',
+                originalPrice: '₹5,999',
+                rating: 4.9,
+                reviews: '6.4k',
+                tag: 'Expert Pick',
+                description: 'Deep analytical questions aligned with recent UPSC trends, complete with detailed explanatory PDFs.'
+            },
+            {
+                id: 'gate-cs',
+                title: 'GATE Computer Science & IT Mock Series',
+                category: 'Gate',
+                testsCount: 40,
+                price: '₹1,199',
+                originalPrice: '₹2,999',
+                rating: 4.8,
+                reviews: '5.1k',
+                tag: 'New',
+                description: 'Subject-wise tests and 15 full syllabus mock tests with virtual gate calculator included.'
+            },
+            {
+                id: 'ssc-cgl',
+                title: 'SSC CGL Tier-I & Tier-II Complete Test Suite',
+                category: 'Engineering', // Multi-use category or general
+                testsCount: 75,
+                price: '₹799',
+                originalPrice: '₹1,999',
+                rating: 4.7,
+                reviews: '21.0k',
+                tag: 'Value Pack',
+                description: 'Speed tests, previous year papers solved, and sectional quizzes for Quant, English, Reasoning & GK.'
+            }
+        ];
+
+        let currentCategory = 'All';
+
+        // Initialize application on window load
+        window.onload = function() {
+            renderFeaturedTests();
+            renderCatalogTests();
+
+            // Mobile menu toggle listener
+            document.getElementById('mobileMenuBtn').addEventListener('click', toggleMobileMenu);
+        };
+
+        // Tab Switching Logic
+        function switchTab(tabId) {
+            ['home', 'catalog', 'dashboard'].forEach(t => {
+                const el = document.getElementById('view-' + t);
+                const nav = document.getElementById('nav-' + t);
+                if (el) el.classList.add('hidden');
+                if (nav) {
+                    nav.classList.remove('text-brand-600', 'font-semibold', 'bg-brand-50');
+                    nav.classList.add('text-slate-600');
+                }
+            });
+
+            const targetView = document.getElementById('view-' + tabId);
+            const targetNav = document.getElementById('nav-' + tabId);
+            if (targetView) targetView.classList.remove('hidden');
+            if (targetNav) {
+                targetNav.classList.add('text-brand-600', 'font-semibold');
+                if(tabId === 'dashboard') targetNav.classList.add('bg-brand-50');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Toggle Mobile Menu
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Render Featured Tests on Home Page
+        function renderFeaturedTests() {
+            const grid = document.getElementById('homeFeaturedGrid');
+            if(!grid) return;
+            const featured = testSeriesData.slice(0, 3);
+            grid.innerHTML = featured.map(test => createTestCardHTML(test)).join('');
+        }
+
+        // Render Catalog Tests
+        function renderCatalogTests() {
+            const grid = document.getElementById('catalogGrid');
+            if(!grid) return;
+            
+            const searchVal = document.getElementById('catalogSearchInput').value.toLowerCase();
+            
+            const filtered = testSeriesData.filter(test => {
+                const matchesCat = currentCategory === 'All' || test.category === currentCategory;
+                const matchesSearch = test.title.toLowerCase().includes(searchVal) || test.description.toLowerCase().includes(searchVal);
+                return matchesCat && matchesSearch;
+            });
+
+            if(filtered.length === 0) {
+                grid.innerHTML = `<div class="col-span-3 text-center py-16 text-slate-500">No test series found matching your criteria.</div>`;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(test => createTestCardHTML(test)).join('');
+        }
+
+        // Reusable Test Card HTML Generator
+        function createTestCardHTML(test) {
+            return `
+                <div class="bg-white rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group">
+                    <div class="p-6 space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="bg-brand-50 text-brand-700 text-xs font-bold px-3 py-1 rounded-full border border-brand-100">${test.category}</span>
+                            <span class="bg-amber-50 text-amber-700 text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
+                                <i class="fa-solid fa-star text-amber-400"></i> ${test.rating} (${test.reviews})
+                            </span>
+                        </div>
+
+                        <h3 class="text-xl font-bold text-slate-900 group-hover:text-brand-600 transition">${test.title}</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed line-clamp-2">${test.description}</p>
+
+                        <div class="pt-2 flex items-center gap-4 text-xs text-slate-500 font-medium">
+                            <span class="flex items-center gap-1.5"><i class="fa-solid fa-file-lines text-brand-600"></i> ${test.testsCount} Mock Tests</span>
+                            <span class="flex items-center gap-1.5"><i class="fa-solid fa-laptop text-brand-600"></i> CBT Mode</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 px-6 py-4 border-t border-slate-100 flex items-center justify-between">
+                        <div>
+                            <span class="text-2xl font-extrabold text-slate-900">${test.price}</span>
+                            <span class="text-xs text-slate-400 line-through ml-1.5">${test.originalPrice}</span>
+                        </div>
+                        <button onclick="openTestDetail('${test.id}')" class="bg-brand-600 hover:bg-brand-700 text-white font-semibold px-4 py-2.5 rounded-xl text-sm transition shadow-md shadow-brand-600/20">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Category Filter Selection
+        function setCategory(cat) {
+            currentCategory = cat;
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                if(btn.textContent.includes(cat) || (cat === 'All' && btn.textContent.includes('All'))) {
+                    btn.className = 'category-btn px-5 py-2.5 rounded-xl font-semibold text-sm whitespace-nowrap bg-brand-600 text-white shadow-md shadow-brand-600/20 transition';
+                } else {
+                    btn.className = 'category-btn px-5 py-2.5 rounded-xl font-semibold text-sm whitespace-nowrap bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition';
+                }
+            });
+            renderCatalogTests();
+        }
+
+        // Filter catalog on typing
+        function filterCatalog() {
+            renderCatalogTests();
+        }
+
+        // Hero search action
+        function searchFromHero() {
+            const query = document.getElementById('heroSearchInput').value;
+            if(query) {
+                document.getElementById('catalogSearchInput').value = query;
+            }
+            switchTab('catalog');
+            renderCatalogTests();
+        }
+
+        // Open Test Detail Modal
+        function openTestDetail(testId) {
+            const test = testSeriesData.find(t => t.id === testId) || testSeriesData[0];
+            const modalBody = document.getElementById('modalContentBody');
+            
+            modalBody.innerHTML = `
+                <div class="flex justify-between items-start">
+                    <div class="space-y-1">
+                        <span class="bg-brand-50 text-brand-700 text-xs font-bold px-3 py-1 rounded-full border border-brand-100">${test.category}</span>
+                        <h2 class="text-2xl font-extrabold text-slate-900 mt-2">${test.title}</h2>
+                    </div>
+                    <button onclick="closeModal('testDetailModal')" class="text-slate-400 hover:text-slate-700 text-xl p-2">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+                <p class="text-slate-600 text-sm leading-relaxed">${test.description}</p>
+
+                <div class="grid grid-cols-3 gap-4 py-4 border-y border-slate-100 text-center">
+                    <div>
+                        <p class="text-xs text-slate-400 font-medium">Total Tests</p>
+                        <p class="text-lg font-bold text-slate-900">${test.testsCount} Papers</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-400 font-medium">Rating</p>
+                        <p class="text-lg font-bold text-slate-900">⭐ ${test.rating}</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-400 font-medium">Validity</p>
+                        <p class="text-lg font-bold text-slate-900">12 Months</p>
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <h4 class="font-bold text-slate-900 text-sm">Syllabus Breakdown & Test Structure:</h4>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> 10 Part-Syllabus Chapter Tests</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> ${test.testsCount - 10} Full-Length Mock Tests with Rank Prediction</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Detailed video explanations for every single question</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> All-India Percentile & Speed Analysis</li>
+                    </ul>
+                </div>
+
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div>
+                        <span class="text-3xl font-extrabold text-slate-900">${test.price}</span>
+                        <span class="text-sm text-slate-400 line-through ml-2">${test.originalPrice}</span>
+                        <p class="text-xs text-emerald-600 font-semibold mt-0.5">Save 60% with Launch Offer</p>
+                    </div>
+                    <div class="flex gap-3 w-full sm:w-auto">
+                        <button onclick="closeModal('testDetailModal'); openModal('mockTestRunner');" class="flex-1 sm:flex-initial bg-slate-900 hover:bg-slate-800 text-white font-semibold px-5 py-3 rounded-xl text-sm transition">
+                            Take Free Demo Test
+                        </button>
+                        <button onclick="closeModal('testDetailModal'); switchTab('dashboard'); showToast('Successfully enrolled in test series!');" class="flex-1 sm:flex-initial bg-brand-600 hover:bg-brand-700 text-white font-semibold px-6 py-3 rounded-xl text-sm transition shadow-lg shadow-brand-600/25">
+                            Buy Now
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            const modal = document.getElementById('testDetailModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        // Generic Modal Open/Close
+        function openModal(modalId) {
+            const m = document.getElementById(modalId);
+            if(m) {
+                m.classList.remove('hidden');
+                m.classList.add('flex');
+            }
+        }
+
+        function closeModal(modalId) {
+            const m = document.getElementById(modalId);
+            if(m) {
+                m.classList.add('hidden');
+                m.classList.remove('flex');
+            }
+        }
+
+        // Auth Submit handler simulation
+        function handleAuthSubmit(e) {
+            e.preventDefault();
+            closeModal('authModal');
+            showToast('Successfully signed in to TestPro Academy!');
+            switchTab('dashboard');
+        }
+
+        // Toast Notification System
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const msg = document.getElementById('toastMessage');
+            msg.textContent = message;
+            toast.classList.remove('translate-y-32', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-32', 'opacity-0');
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
